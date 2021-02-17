@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" page-range-format="expanded" default-locale="tr-TR">
+  <!-- This style was edited with the Visual CSL Editor (https://editor.citationstyles.org/visualEditor/) -->
+  <info>
+    <title>Erciyes Universitesi Fen Bilimleri Enstitusu</title>
+    <id>http://www.zotero.org/styles/erciyes</id>
+    <link rel="self" href="http://www.zotero.org/styles/erciyes"/>
+    <author>
+      <name>Burak Gulmez</name>
+      <email>burakgulmez@erciyes.edu.tr</email>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="erciyes Universitesi"/>
+    <category field="fen bilimleri enstitusu"/>
+    <summary>Erciyes Üniversitesi Fen Bilimleri Enstitüsü içindir. Ufak tefek hatalar olabilir. Tezi basmadan önce tekrar gözden geçirin.</summary>
+    <updated>2020-11-20T08:00:01+00:00</updated>
+    <link href="http://burakgulmez.com"/>
+  </info>
+  <macro name="author">
+    <names variable="author" suffix=", ">
+      <name delimiter-precedes-et-al="never" delimiter-precedes-last="always" initialize-with="." name-as-sort-order="all"/>
+      <label form="short" text-case="capitalize-first" prefix=", "/>
+      <substitute>
+        <names variable="editor"/>
+        <names variable="translator"/>
+      </substitute>
+    </names>
+    <text macro="year-date" suffix=". "/>
+  </macro>
+  <macro name="editor">
+    <names variable="editor">
+      <name delimiter-precedes-et-al="never" delimiter-precedes-last="never" initialize-with="" name-as-sort-order="all" sort-separator=" "/>
+      <label text-case="capitalize-first" prefix=", "/>
+    </names>
+  </macro>
+  <macro name="year-date">
+    <choose>
+      <if variable="issued">
+        <date variable="issued">
+          <date-part name="year"/>
+        </date>
+      </if>
+      <else>
+        <text term="no date" form="short"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="publisher">
+    <group delimiter=", ">
+      <text variable="publisher"/>
+      <text variable="publisher-place"/>
+    </group>
+  </macro>
+  <macro name="edition">
+    <choose>
+      <if is-numeric="edition">
+        <group delimiter=" ">
+          <number variable="edition" form="ordinal"/>
+          <text term="edition" form="short"/>
+        </group>
+      </if>
+      <else>
+        <text variable="edition"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="Sayi"/>
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout delimiter="," prefix="" suffix=".">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+  <bibliography second-field-align="flush" entry-spacing="0">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout suffix=". ">
+      <text variable="citation-number" font-weight="normal" suffix="."/>
+      <text macro="author"/>
+      <choose>
+        <if type="book" match="any">
+          <group delimiter=" ">
+            <text variable="title" text-case="capitalize-all" suffix="."/>
+            <text macro="edition"/>
+            <text macro="publisher"/>
+          </group>
+        </if>
+        <else-if type="chapter" match="any">
+          <text variable="title"/>
+          <text variable="container-title" form="short" text-case="title" suffix=", "/>
+          <text macro="editor" suffix=". "/>
+          <text macro="edition" suffix=", "/>
+          <text macro="publisher"/>
+          <group delimiter=" " prefix=". ">
+            <label plural="never" variable="page" form="short"/>
+            <text variable="page"/>
+          </group>
+        </else-if>
+        <else-if type="patent">
+          <group delimiter=", ">
+            <text variable="title"/>
+            <text variable="number"/>
+            <text macro="year-date"/>
+          </group>
+        </else-if>
+        <else-if type="thesis">
+          <group delimiter=", ">
+            <text variable="title" text-case="capitalize-all"/>
+            <text variable="publisher"/>
+            <text variable="genre"/>
+            <text variable="publisher-place"/>
+            <text term="page" form="short" plural="true"/>
+            <text variable="number-of-pages"/>
+          </group>
+        </else-if>
+        <else-if type="paper-conference">
+          <text variable="title" suffix=". "/>
+          <group>
+            <text variable="container-title" text-case="title" font-style="normal" font-weight="normal" suffix=", "/>
+            <text variable="year-suffix" font-weight="normal" suffix=" "/>
+            <text variable="event-place" prefix="(" suffix="): "/>
+            <text variable="page"/>
+          </group>
+        </else-if>
+        <else>
+          <text variable="title" suffix=". "/>
+          <group>
+            <text variable="container-title" text-case="title" font-weight="bold" suffix=", "/>
+            <text variable="volume" font-weight="bold" suffix=" "/>
+            <text variable="issue" prefix="(" suffix="): "/>
+            <text variable="page"/>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
